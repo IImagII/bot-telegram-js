@@ -1,3 +1,3 @@
-MyBotGPT2_bot
+MyBotGPT_3_bot
 
-t.me/MyBotGPT2_bot
+t.me/MyBotGPT_3_bot
