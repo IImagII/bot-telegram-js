@@ -91,7 +91,7 @@ const start = () => {
             return bot.sendMessage(chatId, `Тебя зовут ${msg.from.first_name}`)
          }
       } catch (err) {
-         console.log(err)
+         bot.sendMessage(chatId, err)
       }
 
       // return bot.sendMessage(chatId, 'Я Вас не понял!')
