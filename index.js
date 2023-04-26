@@ -37,7 +37,7 @@ const history = [] //для отго чтобы поддерживать бес�
 // })
 
 //==============тут все пошло уже по работе с telegram================
-const token = '5978126970:AAEfgJVKE_yxq7J1hssC3hAK76WtpkOMptM'
+const token = '5978126970:AAElrT3ju8A4n-W1wvSRbVxbgxqKUJg0vNQ'
 
 const bot = new TelegramApi(token, { polling: true })
 
