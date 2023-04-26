@@ -1,3 +1,3 @@
-bot301
+gptbot301
 
-t.me/bot301Bot.
+t.me/gptbot301_bot.
