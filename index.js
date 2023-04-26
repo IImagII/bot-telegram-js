@@ -18,23 +18,7 @@ const userInterface = readline.createInterface({
    output: process.stdout,
 })
 
-// userInterface.prompt() //так вызывается первое сообщение
-
 const history = [] //для отго чтобы поддерживать беседу
-
-// //вешаем событие на обработку того что мы пишем в консоли
-// userInterface.on('line', async line => {
-//    //формируем историю
-//    history.push({ role: 'user', content: line })
-
-//    //непосредственно подключаемся к openapi res -это ответ того что нам вернет чат openai
-//    const res = await openaiApi.createChatCompletion({
-//       model: 'gpt-3.5-turbo',
-//       messages: history,
-//    })
-//    console.log(res.data.choices[0].message.content)
-//    userInterface.prompt()
-// })
 
 //==============тут все пошло уже по работе с telegram================
 const token = '6124493119:AAGGgUFEVNM50V0D2EaGVJ3hvF_wYu1xPuU'
@@ -55,21 +39,16 @@ const start = () => {
          command: '/info',
          description: 'Получить информацию о пользователе',
       },
-      {
-         command: '/game',
-         description: 'Начать ирать',
-      },
    ])
 
    //вешаем слушатель на то что нам отрпавляем bot
    //msg =  это то что бот возвращает
    bot.on('message', async msg => {
+      const chatId = msg.chat.id // непоссредственно id самого чата
       try {
          const text = msg.text //передаем в переменную поля которые передает нам бот это то что передает нам бот
 
          history.push({ role: 'user', content: text })
-
-         const chatId = msg.chat.id // непоссредственно id самого чата
 
          const res = await openaiApi.createChatCompletion({
             model: 'gpt-3.5-turbo',
@@ -99,25 +78,6 @@ const start = () => {
       //  console.log(msg) // тут мы выводим в консоль то что отправляет бот его ответ
    })
 
-   // прослушивание бота
-   // bot.on('callback_query', msg => {
-   //    const data = msg.data // это текст самой кнопки что мы отрпавляем
-   //    const chatId = msg.message.chat.id //идентификатор чата
-   //    if (data === chats[chatId]) {
-   //       //chats[chatId] - то какое число загодал сам бот
-   //       return bot.sendMessage(
-   //          chatId,
-   //          `поздравляю ты угадал цифру ${chats[chatId]}`
-   //       )
-   //    } else {
-   //       return bot.sendMessage(
-   //          chatId,
-   //          `Не угадал я загадал ${chats[chatId]} а ты загадал ${data} `
-   //       )
-   //    }
-
-   //    //  bot.sendMessage(chatId, `Ты выбрал цифру ${data}`) // льпарвим ользователю сообщение где покажем что выбрал пользователь
-   //    //  console.log(msg)
    // })
 }
 start()
